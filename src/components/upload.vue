@@ -30,6 +30,7 @@ export default {
         console.log(res);
         if (res.data.code == 200) {
           this.formdata.token = res.data.data;
+          this.$store.commit('CHANGE_TOKEN',res.data.data)
         }
       });
     },

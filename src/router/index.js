@@ -8,6 +8,8 @@ const components = {
   Index: () => import("@/views/Layout/index"),
   AddAdmin: () => import("@/views/AddAdmin/index"),
   AdminList: () => import("@/views/AdminList/index"),
+  AddNews: () => import("@/views/News/addNews"),
+ NewsList: () => import("@/views/News/newsList")
 };
 Vue.use(Router);
 
@@ -60,14 +62,30 @@ const router = new Router({
           },
           component: components.AdminList
         },
-        // {
-        //   path: "up",
-        //   name: "up",
-        //   meta: {
-        //     title: "管理员列表"
-        //   },
-        //   component: components.up
-        // }
+        {
+          path: "addNews",
+          name: "addNews",
+          meta: {
+            title: "添加新闻"
+          },
+          component: components.AddNews
+        },
+        {
+          path: "editNews",
+          name: "editNews",
+          meta: {
+            title: "添加新闻"
+          },
+          component: components.AddNews
+        },
+        {
+          path: "newsList",
+          name: "newsList",
+          meta: {
+            title: "新闻列表"
+          },
+          component: components.NewsList
+        }
       ]
     }
   ]

@@ -22,6 +22,16 @@
                     <el-menu-item index="/layout/adminList">管理员列表</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
+               <el-submenu index="3">
+                <template slot="title">
+                    <i class="el-icon-star-on"></i>
+                    <span>新闻管理</span>
+                </template>
+                <el-menu-item-group>
+                     <el-menu-item index="/layout/addNews">添加新闻</el-menu-item>
+                    <el-menu-item index="/layout/newsList">新闻列表</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
         </el-menu>
     </div>
 </template>

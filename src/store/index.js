@@ -4,12 +4,16 @@ import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
-    userInfo: null
+    userInfo: null,
+    token:''
   },
   actions: {},
   mutations: {
       CHANGE_USER(state, payload) {
       state.userInfo = payload;
+    },
+    CHANGE_TOKEN(state, payload) {
+      state.token = payload;
     }
   },
   plugins: [
