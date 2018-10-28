@@ -22,14 +22,14 @@
             </el-table-column>
             <el-table-column prop="author.nickname" label="新闻作者">
             </el-table-column>
-            <el-table-column prop="nickname" label="操作">
+            <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <!-- <el-button type="primary" size="small" @click="handleEdit(scope.row._id)">编辑</el-button> -->
+                    <el-button type="primary" size="small" @click="handleDET(scope.row._id)">详情</el-button>
                     <el-button type="danger" size="small" @click="handleRem(scope.row._id)">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
-        <el-pagination background layout="prev,pager,next" :total="20"  :page-size = "1" @current-change="handleCurrentChange">
+        <el-pagination background layout="prev,pager,next" :total="count"  :page-size = "2" @current-change="handleCurrentChange">
         </el-pagination>
         </el-card>
     </div>
@@ -41,7 +41,7 @@ export default {
     return {
       list: [],
       pn:1,
-      count:0
+      count:1
     };
   },
   methods: {
@@ -58,9 +58,9 @@ export default {
       this.pn = pn;
       this.getData()
     },
-    // handleEdit(id) {
-    //     this.$router.push({name:"editNews",query:{id}})
-    // },
+    handleDET(id) {
+        this.$router.push({name:"newsItem",query:{id}})
+    },
     handleRem(id) {
         this.$axios.delete(`/admin/news/${id}`).then(res=>{
             if(res.code == 200){

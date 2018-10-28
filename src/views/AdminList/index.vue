@@ -48,15 +48,15 @@ export default {
   methods: {
     getData() {
       this.$axios
-        .get("/admin/adminUser/user")
+        .get("/admin/adminUser/user",{pn:this.pn,size:4})
         .then(res => {
           this.list = res.data;
           this.count = res.count
         });
     },
-    handleCurrentChange(pn) {
-      console.log(pn);
-      this.pn = pn;
+    handleCurrentChange(page) {
+      console.log(page);
+      this.pn = page;
       this.getData()
     },
     handleEdit(id) {

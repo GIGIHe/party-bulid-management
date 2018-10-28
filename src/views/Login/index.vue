@@ -53,7 +53,11 @@ export default {
                      setTimeout(() => {
                        this.$router.push('/layout')
                      }, 1000);
+                   }else{
+                     this.$message.error(res.msg)
                    }
+         }).catch(err=>{
+           this.$message.error(err)
          })
       }
   }

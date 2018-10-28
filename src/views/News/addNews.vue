@@ -114,8 +114,8 @@ export default {
     handleSave() {},
     onEditorChange({ editor, html, text }) {
       //   console.log("editor change!", editor, html, text);
-      this.formdata.contentText = textStr; //不能将text赋值给content.因为上面v-model：content
-      this.formdata.contentText= this.formdata.contentText.substring(0,100) + '...'
+      this.formdata.contentText = text; //不能将text赋值给content.因为上面v-model：content
+      this.formdata.contentText= this.formdata.contentText.substring(0,10) + '...'
     }
   },
   created() {
