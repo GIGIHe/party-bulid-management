@@ -9,7 +9,7 @@
                 <el-form-item label="密码" required prop="password">
                     <el-input type="password" v-model="formdata.password" @keyup.enter.native="handleSubmit"/>
                 </el-form-item>
-                <el-button type="primary" class="btn" @click="handleSubmit">登录</el-button>
+                <el-button type="primary" class="btn" @click="handleLogin">登录</el-button>
             </el-form>
         </div>
 
@@ -45,7 +45,7 @@ export default {
     };
   },
   methods:{
-      handleSubmit(){
+      handleLogin(){
          this.$axios.post('/admin/adminUser/login',this.formdata).then(res=>{
                    if(res.code == 200){
                      this.$store.commit('CHANGE_USER',res.data)

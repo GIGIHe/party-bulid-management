@@ -12,7 +12,11 @@ const components = {
   NewsItem: () => import("@/views/News/newsItem"),
   NewsList: () => import("@/views/News/newsList"),
   AddSwiper: () => import("@/views/Swiper/addSwiper"),
-  SwiperList: () => import("@/views/Swiper/swiperList")
+  SwiperList: () => import("@/views/Swiper/swiperList"),
+  AddCatagory: () => import("@/views/catagory/addCatagory"),
+  CatagoryList: () => import("@/views/catagory/catagoryList"),
+  AddTopic: () => import("@/views/topicList/addTopic"),
+  TopicList: () => import("@/views/topicList/index")
 };
 Vue.use(Router);
 
@@ -112,6 +116,38 @@ const router = new Router({
             title: "编辑轮播图"
           },
           component: components.AddSwiper
+        },
+        {
+          path: "addCatagory",
+          name: "addCatagory",
+          meta: {
+            title: "添加分类"
+          },
+          component: components.AddCatagory
+        },
+        {
+          path: "catagoryList",
+          name: "catagoryList",
+          meta: {
+            title: "分类列表"
+          },
+          component: components.CatagoryList
+        },
+        {
+          path: "topicList",
+          name: "topicList",
+          meta: {
+            title: "主题列表"
+          },
+          component: components.TopicList
+        },
+        {
+          path: "addTopic",
+          name: "addTopic",
+          meta: {
+            title: "添加主题"
+          },
+          component: components.AddTopic
         }
       ]
     }

@@ -1,38 +1,38 @@
 <template>
-    <div class="wrap">
-        <el-card>
-            <div slot=" header">添加轮播图</div>
-            <el-form :model="formdata" label-width="100px">
-                <el-form-item label="轮播图标题" required>
-                    <el-input v-model="formdata.title"></el-input>
-                </el-form-item>
-                <el-form-item label="轮播图" required>
-                    <template slot-scope="scope">
-                        <upload v-model="formdata.imgUrl"></upload>
-                    </template>
-                </el-form-item>
-                <el-form-item label="轮播图分类" required>
-                    <template slot-scope="scope">
-                        <el-select v-model="formdata.newsId" placeholder="请选择">
+  <div class="wrap">
+    <el-card>
+      <div slot=" header">添加轮播图</div>
+      <el-form :model="formdata" label-width="100px">
+        <el-form-item label="轮播图标题" required>
+          <el-input v-model="formdata.title"></el-input>
+        </el-form-item>
+        <el-form-item label="轮播图" required>
+          <template slot-scope="scope">
+            <upload v-model="formdata.imgUrl"></upload>
+          </template>
+        </el-form-item>
+        <el-form-item label="轮播图分类" required>
+          <template slot-scope="scope">
+            <el-select v-model="formdata.newsId" placeholder="请选择">
                             <el-option v-for="item in news" :key="item._id" :label="item.title" :value="item._id">
                             </el-option>
                         </el-select>
-                    </template>
-                </el-form-item>
-                <el-form-item label="是否显示" required v-model="formdata.status">
-                    <el-switch v-model="num" active-text="显示" inactive-text="不显示" @change="handleStatus">
-                    </el-switch>
-                </el-form-item>
-                <el-form-item label="轮播图排序" required>
-                    <el-input-number v-model="formdata.sort" @change="handleChange" :min="1" :max="10"></el-input-number>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="handleSubmit" v-if="isShow">提交</el-button>
-                    <el-button type="primary" @click="handleSubmit" v-else>保存</el-button>
-                </el-form-item>
-            </el-form>
-        </el-card>
-    </div>
+          </template>
+        </el-form-item>
+        <el-form-item label="是否显示" required v-model="formdata.status">
+          <el-switch v-model="num" active-text="显示" inactive-text="不显示" @change="handleStatus">
+          </el-switch>
+        </el-form-item>
+        <el-form-item label="轮播图排序" required>
+          <el-input-number v-model="formdata.sort" @change="handleChange" :min="1"></el-input-number>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="handleSubmit" v-if="isShow">提交</el-button>
+          <el-button type="primary" @click="handleSave" v-else>保存</el-button>
+        </el-form-item>
+      </el-form>
+    </el-card>
+  </div>
 </template>
 
 <script>
@@ -47,7 +47,7 @@ export default {
         imgUrl: "",
         title: "",
         newsId: "",
-        status: "",
+        status: 1,
         sort: ""
       },
       news: [],
@@ -73,13 +73,13 @@ export default {
         }
       });
     },
-    getnewsItem(){
-        let id = this.$route.query.id
-this.$axios.get(`/admin/swiper/${id}`).then(res=>{
-    if(res.code == 200){
-        this.formdata = res.data//提交和修改的同样格式的数据
-    }
-})
+    getnewsItem() {
+      let id = this.$route.query.id;
+      this.$axios.get(`/admin/swiper/${id}`).then(res => {
+        if (res.code == 200) {
+          this.formdata = res.data; //提交和修改的同样格式的数据
+        }
+      });
     },
     handleSubmit() {
       this.$axios.post("/admin/swiper", this.formdata).then(res => {
@@ -92,13 +92,25 @@ this.$axios.get(`/admin/swiper/${id}`).then(res=>{
           this.$message.error(res.msg);
         }
       });
+    },
+    handleSave() {
+      let {id} = this.$route.query
+      this.$axios.patch(`/admin/swiper/${id}`,this.formdata).then(res=>{
+        if(res.code == 200){
+          this.$message.success(res.msg)
+          setTimeout(() => {
+            this.$router.push('/layout/swiperList')
+          }, 1000);
+        }else{
+          this.$message.error('修改失败')
+        }
+      })
     }
   },
   watch: {
     $route(to, from) {
       if (to.name == "editSwiper") {
         this.isShow = false;
-       
       } else {
         this.isShow = true;
       }
@@ -106,13 +118,18 @@ this.$axios.get(`/admin/swiper/${id}`).then(res=>{
   },
   created() {
     this.getnews();
-    if(this.$route.name == "editSwiper"){
-          this.isShow = false;
- this.getnewsItem()
-      } else {
-        this.isShow = true;
-        this.formdata = null
-      
+    if (this.$route.name == "editSwiper") {
+      this.isShow = false;
+      this.getnewsItem();
+    } else {
+      this.isShow = true;
+      this.formdata = {
+        imgUrl: "",
+        title: "",
+        newsId: "",
+        status: "",
+        sort: ""
+      };
     }
   }
 };

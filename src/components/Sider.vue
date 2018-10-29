@@ -22,7 +22,7 @@
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title">
-                    <i class="el-icon-star-on"></i>
+                    <i class="el-icon-news"></i>
                     <span>新闻管理</span>
                 </template>
                 <el-menu-item-group>
@@ -38,6 +38,26 @@
                 <el-menu-item-group>
                     <el-menu-item index="/layout/swiperList">轮播图列表</el-menu-item>
                     <el-menu-item index="/layout/addSwiper">添加轮播图</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
+             <el-submenu index="5">
+                <template slot="title">
+                    <i class="el-icon-share"></i>
+                    <span>分类管理</span>
+                </template>
+                <el-menu-item-group>
+                    <el-menu-item index="/layout/catagoryList">分类列表</el-menu-item>
+                    <el-menu-item index="/layout/addCatagory">添加分类</el-menu-item>
+                </el-menu-item-group>
+            </el-submenu>
+            <el-submenu index="6">
+                <template slot="title">
+                    <i class="el-icon-date"></i>
+                    <span>发帖管理</span>
+                </template>
+                <el-menu-item-group>
+                    <el-menu-item index="/layout/topicList">主题列表</el-menu-item>
+                    <el-menu-item index="/layout/addTopic">添加主题</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
         </el-menu>

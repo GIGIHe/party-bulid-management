@@ -49,8 +49,15 @@ export default {
     handleEdit(id){
 this.$router.push({name:'editSwiper',query:{id}})
     },
-    handleRem(){
-
+    handleRem(id){
+ this.$axios.patch(`/admin/swiper/${id}`).then(res=>{
+     if(res.code == 200){
+         this.$message.success(res.msg)
+         this.getSwiper()
+     }else{
+         this.$message.error('删除失败')
+     }
+ })
     },
     handleCurrentChange(page){
 this.pn = page;
