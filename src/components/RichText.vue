@@ -60,7 +60,7 @@ export default {
       this.formdata.contentText = text; //不能将text赋值给content.因为上面v-model：content
       this.formdata.contentText =
         this.formdata.contentText.substring(0, 10) + "...";
-        this.$emit("input", {content:this.formdata.content,contentText:this.formdata.contentText});
+        this.$emit("input", {...this.formdata});
     }
   },
   watch: {

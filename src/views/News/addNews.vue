@@ -49,8 +49,8 @@ export default {
         content: "",
         contentText: ""
       },
-      richText:{},
-            user: [],
+      richText: {},
+      user: [],
       catagory: [],
       isShow: true
     };
@@ -82,12 +82,12 @@ export default {
     },
     handleSave() {}
   },
-  watch:{
-richText(val){
-  console.log(val);
-  this.formdata.contentText =val.contentText,
-  this.formdata.content = val.content
-}
+  watch: {
+    richText(val) {
+      console.log(val);
+      (this.formdata.contentText = val.contentText),
+        (this.formdata.content = val.content);
+    }
   },
   created() {
     this.getUser();

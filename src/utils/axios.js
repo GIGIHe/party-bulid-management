@@ -13,7 +13,7 @@ export default class Axios {
       this.xhr
         .get(url, { params: data }, config)
         .then(res => {
-          if (res.code == 403) {
+          if (res.data.code == 403) {
             Message.info(res.msg);
             router.push("/");
           }
@@ -28,7 +28,7 @@ export default class Axios {
     return new Promise((resolve, reject) => {
       this.xhr[method](url, data, config)
         .then(res => {
-          if (res.code == 403) {
+          if (res.data.code == 403) {
             Message.info(res.msg);
             router.push("/");
           }

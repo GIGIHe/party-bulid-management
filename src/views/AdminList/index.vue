@@ -20,7 +20,7 @@
                     <img :src="scope.row.img" class="img">
                 </template>
             </el-table-column>
-            <el-table-column prop="sex" label="性别">
+            <el-table-column prop="sex" label="性别" :formatter = "formatsex">
             </el-table-column>
             <el-table-column prop="desc" label="签名">
             </el-table-column>
@@ -72,9 +72,19 @@ export default {
                 this.$message.error(res.msg)
             }
         })
-    }
-    
+    },
+    //不需要created，本来就是属性
+    formatsex:function(row, column, cellValue, index) {
+     console.log('formatter: ',row, column, cellValue, index)
+    return  cellValue == 1?'男': cellValue == 1?'女':''
+}
   },
+//   computed:{
+//  formatsex:function(row, column, cellValue, index) {
+//      console.log(row, column, cellValue, index)
+//     return  cellValue == 1?'男':'女'
+// }
+//   },
   created() {
     this.getData();
   }
